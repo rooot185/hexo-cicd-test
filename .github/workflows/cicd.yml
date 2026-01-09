@@ -1,7 +1,5 @@
-# .github/workflows/cicd.yml
-
 name: CICD
-on: [push] # run this action in every push
+on: [push]
 permissions:
   contents: write
 jobs:
@@ -10,13 +8,16 @@ jobs:
     steps:
       - name: Checkout Source Code
         uses: actions/checkout@v3
-            - name: Install and Run Check Script
-          run: |
-            yarn install
-            yarn prettier --check ./source
-                  - name: Build
-            run: yarn build
-                        - name: Deploy
-              uses: JamesIves/github-pages-deploy-action@v4
-              with:
-                folder: public
+      
+      - name: Install and Run Check Script  
+        run: |                              
+          yarn install                      
+          yarn prettier --check ./source     
+      
+      - name: Build                        
+        run: yarn build                    
+      
+      - name: Deploy                       
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: public
